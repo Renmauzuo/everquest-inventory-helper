@@ -42,7 +42,10 @@ function onGuideLoad() {
     let guideObjects = $.csv.toObjects(guideCSV);
     guideDictionary = {};
     for (let i = 0; i < guideObjects.length; i++) {
-        guideDictionary[guideObjects[i].Item] = guideObjects[i].Use;
+        let currentDictionary = {};
+        currentDictionary.Use = guideObjects[i].Use;
+        currentDictionary.Notes = guideObjects[i].Notes;
+        guideDictionary[guideObjects[i].Item] = currentDictionary;
     }
 
     guideLoaded = true;
@@ -59,13 +62,15 @@ function parseInventory() {
         //Always check general items and never check equipment
         //Check bank and shared bank conditionally if they are checked
         if (currentItem.Name !== 'Empty' && (currentItem.Location.startsWith('General') || ($('#bank:checked').length && currentItem.Location.startsWith('Bank')) || ($('#shared-bank:checked').length) && currentItem.Location.startsWith('SharedBank'))) {
-            let itemUse = guideDictionary[currentItem.ID] || guideDictionary[currentItem.Name] || "No use set";
+            let currentDictionary = guideDictionary[currentItem.ID] || guideDictionary[currentItem.Name] || {};
+            let itemUse = currentDictionary.Use || "No use set";
 
             if (itemUse !== 'Ignore' && ($('#include-unset:checked').length || itemUse !== "No use set")) {
                 let tr = $('<tr></tr>');
                 tr.append('<td>'+currentItem.Name+'</td>');
                 tr.append('<td>'+itemUse+'</td>');
                 tr.append('<td>'+currentItem.Location+'</td>');
+                tr.append('<td>'+currentDictionary.Notes+'</td>');
                 tbody.append(tr);
             }
         }
