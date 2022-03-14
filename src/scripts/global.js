@@ -22,7 +22,7 @@ $(function () {
     });
 
     $('th').on('click', function () {
-        sortTable($(this).index);
+        sortTable($(this).index());
     });
 });
 
