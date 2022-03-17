@@ -13,7 +13,7 @@ html(lang="en")
                 p Ever come back from an adventuring session with your bags overflowing and forget what everything is for? This is a tool to help you sort out your loot after an adventure by reading an inventory output file and comparing it against a CSV that determines what items go where.
                 p You will have to generate the CSV yourself (after all, I don't know what items you plan to keep and what you want to sell), but you can find a sample #[a(href='csv/sample-guide.csv') here]. Some notes about the CSV format:
                 ul 
-                    li The Use and Item columns are required. You may also include additional columns (such as the optional "Notes" column in the example) to use for your own reference. These do not affect the output.
+                    li The Use and Item columns are required. The Notes column is optional, but will display in the table below if it has a value. You may also include additional columns to use for your own reference. These do not affect the output.
                     li If an item's "Use" value is "Ignore" it will not be included in the output. Otherwise you may set any Use labels you want.
                     li The Item field may be either the item's name or its ID.
             section

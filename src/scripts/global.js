@@ -11,12 +11,18 @@ $(function () {
     guideReader = new FileReader();
     guideReader.onload = onGuideLoad;
 
-    $('#inventory').on('input', function () {
+    $('input[type=checkbox]').on('change', function () {
+        if (inventoryLoaded && guideLoaded) {
+            parseInventory();
+        }
+    });
+
+    $('#inventory').on('change', function () {
        let file = $(this).prop('files')[0];
        inventoryReader.readAsText(file);
     });
 
-    $('#sort-guide').on('input', function () {
+    $('#sort-guide').on('change', function () {
         let file = $(this).prop('files')[0];
         guideReader.readAsText(file);
     });
@@ -56,6 +62,7 @@ function onGuideLoad() {
 
 function parseInventory() {
     let tbody = $('#full-item-list tbody');
+    tbody.empty();
 
     for (let i = 0; i < inventoryObjects.length; i++) {
         let currentItem = inventoryObjects[i];
@@ -70,7 +77,7 @@ function parseInventory() {
                 tr.append('<td>'+currentItem.Name+'</td>');
                 tr.append('<td>'+itemUse+'</td>');
                 tr.append('<td>'+currentItem.Location+'</td>');
-                tr.append('<td>'+currentDictionary.Notes+'</td>');
+                tr.append('<td>'+(currentDictionary.Notes||'')+'</td>');
                 tbody.append(tr);
             }
         }
