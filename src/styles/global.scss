@@ -16,3 +16,14 @@ main {
         padding-right: 12px;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: white;
+
+        a {
+            color: lightblue;
+        }
+    }
+}
