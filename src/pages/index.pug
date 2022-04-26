@@ -36,6 +36,14 @@ html(lang="en")
                     label(for="sort-guide") CSV Sort Guide
                     br
                     input(type="file" id="sort-guide" name="sort-guide")
+                    br
+                    br
+                    label(for="theme") Theme
+                    br
+                    select(id="theme" name="theme")
+                        option(value=0) Auto 
+                        option(value=1) Light 
+                        option(value=2) Dark
             section#full-item-list
                 p Click on a column header to sort;
                 table#item-table
